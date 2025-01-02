@@ -1,5 +1,5 @@
 from flask import Flask, request, send_file
-from PIL import Image, ImageDraw, ImageFont, ImageFilter
+from Pillow import Image, ImageDraw, ImageFont, ImageFilter
 import io
 import os
 
