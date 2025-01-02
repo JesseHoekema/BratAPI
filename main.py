@@ -16,7 +16,7 @@ def create_image(text):
     # Create a new image with a green background
     img = Image.new('RGB', (500, 500), color='#8ACF00')
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype('path_to_font.ttf', size=150)
+    font = ImageFont.truetype('https://github.com/JesseHoekema/BratAPI/raw/refs/heads/main/path_to_font.ttf', size=150)
 
     # Calculate text bounding box
     text_bbox = draw.textbbox((0, 0), text, font=font)
