@@ -38,4 +38,4 @@ def create_image(text):
     return img_io
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=5000)
