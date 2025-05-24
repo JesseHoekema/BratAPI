@@ -9,12 +9,27 @@
     <img src="https://brat-api-pink.vercel.app/generate?text=Enter Text" id="image" alt="Generated Image">
     <input type="text" id="text" placeholder="Enter text">
     <button id="generate">Generate</button>
+    <button id="download">Download</button>
     <a href="/generate?text=Enter Text">Api</a>
     <script>
         document.getElementById('generate').addEventListener('click', function() {
             const text = document.getElementById('text').value;
             const image = document.getElementById('image');
             image.src = `https://brat-api-pink.vercel.app/generate?text=${encodeURIComponent(text)}`;
+        });
+
+        document.getElementById('download').addEventListener('click', async function() {
+            const text = document.getElementById('text').value || 'Enter Text';
+            const response = await fetch(`https://brat-api-pink.vercel.app/generate?text=${encodeURIComponent(text)}`);
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${text}-image.png`;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
         });
     </script>
     <style>
