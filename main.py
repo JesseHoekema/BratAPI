@@ -1,9 +1,13 @@
-from flask import Flask, request, send_file, abort
+from flask import Flask, request, send_file, abort, render_template
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 import io
 import os
 
 app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return render_template('generate.html')
 
 @app.route('/generate', methods=['GET'])
 def generate_image():

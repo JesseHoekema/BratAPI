@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="https://brat-api-pink.vercel.app/generate?text=Enter Text" id="image" alt="Generated Image">
+    <input type="text" id="text" placeholder="Enter text">
+    <button id="generate">Generate</button>
+    <a href="/generate?text=Enter Text">Api</a>
+    <script>
+        document.getElementById('generate').addEventListener('click', function() {
+            const text = document.getElementById('text').value;
+            const image = document.getElementById('image');
+            image.src = `https://brat-api-pink.vercel.app/generate?text=${encodeURIComponent(text)}`;
+        });
+    </script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        input {
+            margin-top: 20px;
+            padding: 10px;
+            width: 300px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+        }
+    </style>
+</body>
+</html>
