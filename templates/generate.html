@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="icon" type="image/png" href="https://brat-api-pink.vercel.app/generate?text=brat">
 </head>
+
 <body>
     <img src="https://brat-api-pink.vercel.app/generate?text=Enter Text" id="image" alt="Generated Image">
     <input type="text" id="text" placeholder="Enter text">
@@ -12,13 +15,21 @@
     <button id="download">Download</button>
     <a href="/generate?text=Enter Text">Api</a>
     <script>
-        document.getElementById('generate').addEventListener('click', function() {
+        function setFavicon(url) {
+            let link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+            link.type = 'image/png';
+            link.rel = 'icon';
+            link.href = url;
+            document.getElementsByTagName('head')[0].appendChild(link);
+        }
+        document.getElementById('generate').addEventListener('click', function () {
             const text = document.getElementById('text').value;
             const image = document.getElementById('image');
             image.src = `https://brat-api-pink.vercel.app/generate?text=${encodeURIComponent(text)}`;
+            setFavicon(`https://brat-api-pink.vercel.app/generate?text=${encodeURIComponent(text)}`);
         });
 
-        document.getElementById('download').addEventListener('click', async function() {
+        document.getElementById('download').addEventListener('click', async function () {
             const text = document.getElementById('text').value || 'Enter Text';
             const response = await fetch(`https://brat-api-pink.vercel.app/generate?text=${encodeURIComponent(text)}`);
             const blob = await response.blob();
@@ -41,19 +52,23 @@
             height: 100vh;
             background-color: #f0f0f0;
         }
+
         img {
             max-width: 100%;
             height: auto;
         }
+
         input {
             margin-top: 20px;
             padding: 10px;
             width: 300px;
         }
+
         button {
             margin-top: 10px;
             padding: 10px 20px;
         }
     </style>
 </body>
+
 </html>
